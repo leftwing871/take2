@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head(title)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Starter Template · Bootstrap</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
+
+    <!-- custom javascript -->
+    <script></script>
+
+    <title th:text="${title}">Hello, Spring Boot!</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:fragment="menu(menu)">
+    <a class="navbar-brand" href="#">Spring Boot Tutorial</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item" th:classappend="${menu} == 'home'? 'active'">
+                <a class="nav-link" href="#" th:href="@{/}">Home <span class="sr-only" th:if="${menu} == 'home'">(current)</span></a>
+            </li>
+            <li class="nav-item" th:classappend="${menu} == 'board'? 'active'">
+                <a class="nav-link" href="#" th:href="@{/board/list}">게시판 <span class="sr-only" th:if="${menu} == 'board'">(current)</span></a>
+            </li>
+        </ul>
+<!--        <form class="form-inline my-2 my-lg-0">-->
+<!--            <input class="form-control mr-sm2" type="text" placeholder="Search" aria-label="Search">-->
+<!--            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
+<!--        </form>-->
+        <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/account/login}" sec:authorize="!isAuthenticated()">로그인</a>
+        <a class="btn btn-secondary my-2 my-sm-0" th:href="@{/account/register}" sec:authorize="!isAuthenticated()">회원가입</a>
+        <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+            <!--            <input class="form-control mr-sm2" type="text" placeholder="Search" aria-label="Search">-->
+            <span class="text-white" sec:authentication="name">사용자</span>
+            <span class="text-white mx-2" sec:authentication="principal.authorities">권한</span>
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<footer th:fragment="footer">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</footer>
+</body>
+
+</html>
