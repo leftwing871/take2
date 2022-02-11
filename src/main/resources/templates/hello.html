@@ -14,7 +14,26 @@
         <h1>Spring Boot Tutorial</h1>
         <p class="lead">Step1</p>
     </div>
+    <div>
+        <table id="postTable">
+            <thead>
+            <tr>
+                <th>postId</th>
+                <th>nickName</th>
+                <th>title</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="post : ${list}">
+                <td th:text="${post.postId}">postId</td>
+                <td th:text="${post.nickName}">nickName</td>
+                <td th:text="${post.title}">title</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </main><!-- /.container -->
 <footer th:replace="fragments/common :: footer"></footer>
+</body>
 </html>
