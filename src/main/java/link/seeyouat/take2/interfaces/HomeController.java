@@ -44,12 +44,14 @@ public class HomeController {
 
     @GetMapping("/environment")
     public String hello(Model model, @RequestParam(value = "sleep_sec", required = false, defaultValue = "") String sleep_sec) throws IOException, InterruptedException {
+        //_log.info("sleep_sec is " + sleep_sec);
 
-        _log.info("haha");
         //시스템 환경변수 값 전체 가져오기 (key, value 형태)
         Map <String, String> mapX = System.getenv();
         for (Map.Entry <String, String> entry: mapX.entrySet()) {
-            System.out.println("Variable Name:- " + entry.getKey() + " Value:- " + entry.getValue());
+            //System.out.println("Variable Name:- " + entry.getKey() + " Value:- " + entry.getValue());
+
+            _log.info("Variable Name:- " + entry.getKey() + " Value:- " + entry.getValue());
         }
 
         // 컨테이너 생성
@@ -67,11 +69,13 @@ public class HomeController {
 
         if(!SLEEP_SEC.isEmpty() && !SLEEP_SEC.isBlank())
         {
+            _log.info("begin sleep env " + SLEEP_SEC);
             Thread.sleep(Integer.parseInt(SLEEP_SEC) * 1000);
         }
 
         if(!sleep_sec.isEmpty() && !sleep_sec.isBlank())
         {
+            _log.info("begin sleep parameter " + sleep_sec);
             Thread.sleep(Integer.parseInt(sleep_sec) * 1000);
         }
 
