@@ -1,15 +1,15 @@
 package link.seeyouat.take2.interfaces;
 
 import link.seeyouat.take2.entity.Post;
+import org.slf4j.Logger;        //LOGBACK
+import org.slf4j.LoggerFactory; //LOGBACK
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.io.support.ResourcePropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,6 +20,21 @@ import java.util.Map;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+
+    private static final Logger _log = LoggerFactory.getLogger(HelloController.class);
+
+    @RequestMapping(value = "/log-test", method = RequestMethod.POST)
+    public void logTest(@RequestBody Map<String, Object> payload)
+    {
+        _log.trace("Trace Log");
+        _log.debug("Debug Log");
+        _log.info("Info Log");
+        _log.warn("Warn Log");
+        _log.error("Error Log");
+
+        System.out.println(payload);
+    }
+
     @GetMapping
     public String hello() {
 
@@ -30,6 +45,7 @@ public class HomeController {
     @GetMapping("/environment")
     public String hello(Model model, @RequestParam(value = "sleep_sec", required = false, defaultValue = "") String sleep_sec) throws IOException, InterruptedException {
 
+        _log.info("haha");
         //시스템 환경변수 값 전체 가져오기 (key, value 형태)
         Map <String, String> mapX = System.getenv();
         for (Map.Entry <String, String> entry: mapX.entrySet()) {
