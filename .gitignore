@@ -38,5 +38,6 @@ out/
 
 
 .DS_Store
+.DS_Store1
 
 logback_logs/
