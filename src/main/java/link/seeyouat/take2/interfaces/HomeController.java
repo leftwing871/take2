@@ -79,6 +79,12 @@ public class HomeController {
             Thread.sleep(Integer.parseInt(sleep_sec) * 1000);
         }
 
+        //CPU, Memory 부하발생 로직
+        String x = "";
+        for (int i = 0; i < 100; i++) {
+            x += String.valueOf(i);
+        }
+
 //        HashMap<String, String> map = new HashMap<>();
 //        map.put("ip", ip);
 //        map.put("hostname", hostName);
