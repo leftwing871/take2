@@ -43,7 +43,7 @@ public class HomeController {
 
 
     @GetMapping("/environment")
-    public String hello(Model model, @RequestParam(value = "sleep_sec", required = false, defaultValue = "") String sleep_sec) throws IOException, InterruptedException {
+    public String hello(Model model, @RequestParam(value = "sleep_sec", required = false, defaultValue = "") String sleep_sec, @RequestParam(value = "raise_err", required = false, defaultValue = "0") String raise_err) throws Exception {
         //_log.info("sleep_sec is " + sleep_sec);
 
         //시스템 환경변수 값 전체 가져오기 (key, value 형태)
@@ -83,6 +83,11 @@ public class HomeController {
         String x = "";
         for (int i = 0; i < 100; i++) {
             x += String.valueOf(i);
+        }
+
+        if(raise_err.equals("1"))
+        {
+            throw new Exception("something wrong.");
         }
 
 //        HashMap<String, String> map = new HashMap<>();
