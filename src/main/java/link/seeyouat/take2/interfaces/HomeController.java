@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,10 +92,12 @@ public class HomeController {
             throw new Exception("something wrong.");
         }
 
-//        HashMap<String, String> map = new HashMap<>();
-//        map.put("ip", ip);
-//        map.put("hostname", hostName);
-//        map.put("SLEEP_SEC", SLEEP_SEC);
+        //mapX.put("sleep_sec", sleep_sec);
+        //mapX.put("raise_err", raise_err);
+
+        //시간을 -> yyyyMMddHHmmss로  format할 수 있음.
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        mapX.put("request_date", LocalDateTime.now().format(dtf));
 
         model.addAttribute("mapENV", mapX);
 

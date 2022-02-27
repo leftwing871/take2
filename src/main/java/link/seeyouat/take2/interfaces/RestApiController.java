@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Random;
+
 
 @RestController
 public class RestApiController {
@@ -37,6 +39,19 @@ public class RestApiController {
         _log.info("projectNameAndVersion: " + projectNameAndVersion);
 
         return "The server is running well.";
+    }
+
+    @GetMapping("/random")
+    public String random()
+    {
+        Integer sleep_sec = Math.abs(new Random().nextInt() % 10 + 1);
+
+        for (int i = 0; i < 10; i++) {
+            sleep_sec = Math.abs(new Random().nextInt() % 10 + 1);
+            _log.info("random: " + String.valueOf(sleep_sec));
+        }
+
+        return String.valueOf(sleep_sec);
     }
 
 }
