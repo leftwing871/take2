@@ -53,8 +53,11 @@ public class HomeController {
         for (Map.Entry <String, String> entry: mapX.entrySet()) {
             //System.out.println("Variable Name:- " + entry.getKey() + " Value:- " + entry.getValue());
 
-            _log.info("Variable Name:- " + entry.getKey() + " Value:- " + entry.getValue());
+            _log.info("Variable Name:- " + entry.getKey() + " Value: " + entry.getValue());
         }
+
+        HashMap<String, String> mapEnv =  new HashMap<>();
+        mapEnv.putAll(mapX);
 
         // 컨테이너 생성
         GenericXmlApplicationContext ctx
@@ -97,9 +100,9 @@ public class HomeController {
 
         //시간을 -> yyyyMMddHHmmss로  format할 수 있음.
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        mapX.put("request_date", LocalDateTime.now().format(dtf));
+        mapEnv.put("request_date", LocalDateTime.now().format(dtf));
 
-        model.addAttribute("mapENV", mapX);
+        model.addAttribute("mapENV", mapEnv);
 
         return "environment";
     }
