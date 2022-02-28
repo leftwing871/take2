@@ -2,8 +2,7 @@ version: 0.2
 
 phases:
   install:
-    runtime-versions:
-      java: corretto17
+      - yum install java-17-amazon-corretto-headless
     commands:
       - echo Install started on `date`
       - echo Entering install phase...
