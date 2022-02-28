@@ -3,10 +3,9 @@ version: 0.2
 phases:
   install:
     commands:
-      - yum install java-17-amazon-corretto-headless
       - echo Install started on `date`
       - echo Entering install phase...
-      - echo Nothing to do now
+      - sudo yum install java-17-amazon-corretto-headless
   build:
     commands:
       - echo Build started on `date`
