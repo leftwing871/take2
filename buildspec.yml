@@ -1,16 +1,18 @@
-version: 0.1
+version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      java: corretto17
     commands:
       - echo Install started on `date`
       - echo Entering install phase...
       - echo Nothing to do now
   build:
     commands:
-      - ls -al
       - echo Build started on `date`
-      - gradlew bootJar
+      - ls -al
+      - ./gradlew bootJar
 artifacts:
   type: zip
   files:
