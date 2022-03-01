@@ -7,11 +7,11 @@ phases:
       - uname -a
       - yum remove java-11-amazon-corretto-headless -y
       - yum remove java-1.8.0-amazon-corretto -y
-      - yum remove java-1.8.0-amazon-corretto-devel -y
       - yum install java-17-amazon-corretto-headless -y
+      - JAVA_HOME="/usr/lib/jvm/java-17-amazon-corretto.x86_64"
       - java -version
       - pwd
-      - ls -al 
+      - ls -al
   build:
     commands:
       - echo Build started on `date`
