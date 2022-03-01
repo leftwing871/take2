@@ -8,8 +8,8 @@ phases:
       - yum install java-17-amazon-corretto-headless -y
       - java -version
       - echo "Updating alternatives for java and java compiler"
-      - alternatives --config java /usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/java
-      - alternatives --config javac /usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/javac
+      - update-alternatives --config java /usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/java
+      - update-alternatives --config javac /usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/javac
   build:
     commands:
       - echo Build started on `date`
