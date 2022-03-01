@@ -7,9 +7,7 @@ phases:
       - uname -a
       - yum install java-17-amazon-corretto-headless -y
       - java -version
-      - echo "Updating alternatives for java and java compiler"
-      - update-alternatives --config --set java /usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/java
-      - update-alternatives --config --set javac /usr/lib/jvm/java-17-amazon-corretto.x86_64/bin/javac
+      - alternatives --config java <<< '3'
   build:
     commands:
       - echo Build started on `date`
