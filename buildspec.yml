@@ -5,7 +5,7 @@ phases:
       - echo Install started on `date`
       - echo Entering install phase...
       - uname -a  
-      - yum install java-17-amazon-corretto-headless
+      - yum install java-17-amazon-corretto-headless -y
   build:
     commands:
       - echo Build started on `date`
