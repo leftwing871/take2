@@ -9,10 +9,10 @@ phases:
       - yum remove java-1.8.0-amazon-corretto -y
       - yum remove java-1.8.0-amazon-corretto-devel -y
       - yum install java-17-amazon-corretto-headless -y
-      - java -v
-      - javac -v
+      - java -version
+      - javac -version
       - pwd
-      - ls -al
+      - ls -al 
   build:
     commands:
       - echo Build started on `date`
