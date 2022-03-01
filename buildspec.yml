@@ -4,11 +4,7 @@ phases:
     commands:
       - echo Install started on `date`
       - echo Entering install phase...
-      - uname -a
-      - yum update -y
-      - echo list available openjdk packages
-      - yum list *openjdk*
-      - echo install openjdk packages      
+      - uname -a  
       - yum install java-17-amazon-corretto-headless
   build:
     commands:
