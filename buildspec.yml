@@ -7,6 +7,7 @@ phases:
       - uname -a
       - yum install java-17-amazon-corretto-headless -y
       - java -version
+      - alternatives --config java
   build:
     commands:
       - echo Build started on `date`
