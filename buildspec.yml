@@ -11,6 +11,8 @@ phases:
       - yum install java-17-amazon-corretto-headless -y
       - java -v
       - javac -v
+      - pwd
+      - ls -al
   build:
     commands:
       - echo Build started on `date`
