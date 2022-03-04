@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head('Book productpage')">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('home')">
+
+</nav>
+<style>
+
+    .height-100 {
+        height: 100vh
+    }
+
+    .card {
+        width: 380px;
+        border: none;
+        height: 280px
+    }
+
+    .ratings {
+        margin-right: 10px
+    }
+
+    .ratings i {
+        color: #cecece;
+        font-size: 32px
+    }
+
+    .rating-color {
+        color: #fbc634 !important
+    }
+
+    .review-count {
+        font-weight: 400;
+        margin-bottom: 2px;
+        font-size: 24px !important
+    }
+
+    .small-ratings i {
+        color: #cecece
+    }
+
+    .review-stat {
+        font-weight: 300;
+        font-size: 18px;
+        margin-bottom: 2px
+    }
+</style>
+
+<!-- Add icon library -->
+
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>코스모스</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div>
+                    <img src="http://image.yes24.com/goods/2312211/XL"  class="img-thumbnail">
+                </div>
+
+            </div>
+            <div class="col-md-9">
+                <div>
+                    <h4>책소개</h4>
+                </div>
+                <div>
+                    전 세계 60개국에 방송되어 6억 시청자를 감동시킨 텔레비전 교양 프로그램을 책으로 옮긴 칼 세이건(Carl Sagan)의 『코스모스(Cosmos)』. 현대 천문학을 대표하는 저명한 과학자인 칼 세이건은 이 책에서 사람들의 상상력을 사로잡고, 난해한 개념을 명쾌하게 해설하는 놀라운 능력을 마음껏 발휘한다. 그는 에라토스테네스, 데모크리토스, 히파티아, 케플러, 갈릴레오, 뉴턴, 다윈 같은 과학의 탐험가들이 개척해 놓은 길을 따라가며 과거, 현재, 미래의 과학이 이뤘고, 이루고 있으며, 앞으로 이룰 성과들을 알기 쉽게 풀이해 들려준다.
+                    이 책은 모두 13개장으로 구성되어 있다. 칼 세이건은 이 책에서 10조 개의 별들을 품고 있는 은하가 10조 개 있는 광막한 대우주의 세계에서 은하수 은하의 변방, 자그마한 노란색 별 태양이 이끄는 태양계의 한구석에서 창백하게 빛나는 지구에 이르기까지 코스모스에 대해 우리 인류가 알게 된 것들, 알게 된 과정들, 그리고 알아 갈 것들을 소개하고 그것이 궁극적으로 우리 자신을 알기 위한 것임을 설득력 있게 보여 준다. 코스모스 특별판은 수록 이미지가 흑백으로 실려 있다.
+                </div>
+                <div  style="height: 50px;">&nbsp;</div>
+                <div>
+                    <h4>평점</h4>
+                </div>
+                <div>
+                    <!-- V1 -->
+                    <div>
+                        <span>준비중</span>
+                    </div>
+
+                    <!-- V2 -->
+                    <div>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+
+                    <!-- V3 -->
+                    <div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="ratings">
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star rating-color"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div  style="height: 50px;">&nbsp;</div>
+                <div>
+                    <div>
+                        <h4>품목정보</h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">출간일</th>
+                            <th scope="col">2006년 12월 20일</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">쪽수, 무게, 크기</th>
+                            <td>719쪽 | 1,002g | 153*224*40mm</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">ISBN13</th>
+                            <td>9788983711892</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">ISBN10</th>
+                            <td>8983711892</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</main><!-- /.container -->
+<footer th:replace="fragments/common :: footer"></footer>
+</body>
+</html>

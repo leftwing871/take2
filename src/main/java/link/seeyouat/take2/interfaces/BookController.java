@@ -26,4 +26,11 @@ public class BookController {
         model.addAttribute("list", list);
         return "book/list";
     }
+
+    @GetMapping("/productpage")
+    public String productpage(Model model) {
+
+
+        return "book/productpage";
+    }
 }
