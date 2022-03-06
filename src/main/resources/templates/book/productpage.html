@@ -69,9 +69,8 @@
                 <div>
                     <h4>책소개</h4>
                 </div>
-                <div>
-                    전 세계 60개국에 방송되어 6억 시청자를 감동시킨 텔레비전 교양 프로그램을 책으로 옮긴 칼 세이건(Carl Sagan)의 『코스모스(Cosmos)』. 현대 천문학을 대표하는 저명한 과학자인 칼 세이건은 이 책에서 사람들의 상상력을 사로잡고, 난해한 개념을 명쾌하게 해설하는 놀라운 능력을 마음껏 발휘한다. 그는 에라토스테네스, 데모크리토스, 히파티아, 케플러, 갈릴레오, 뉴턴, 다윈 같은 과학의 탐험가들이 개척해 놓은 길을 따라가며 과거, 현재, 미래의 과학이 이뤘고, 이루고 있으며, 앞으로 이룰 성과들을 알기 쉽게 풀이해 들려준다.
-                    이 책은 모두 13개장으로 구성되어 있다. 칼 세이건은 이 책에서 10조 개의 별들을 품고 있는 은하가 10조 개 있는 광막한 대우주의 세계에서 은하수 은하의 변방, 자그마한 노란색 별 태양이 이끄는 태양계의 한구석에서 창백하게 빛나는 지구에 이르기까지 코스모스에 대해 우리 인류가 알게 된 것들, 알게 된 과정들, 그리고 알아 갈 것들을 소개하고 그것이 궁극적으로 우리 자신을 알기 위한 것임을 설득력 있게 보여 준다. 코스모스 특별판은 수록 이미지가 흑백으로 실려 있다.
+                <div id="introduce">
+                    loading
                 </div>
                 <div  style="height: 50px;">&nbsp;</div>
                 <div>
@@ -79,12 +78,12 @@
                 </div>
                 <div>
                     <!-- V1 -->
-                    <div>
+                    <div id="rating_ver1">
                         <span>준비중</span>
                     </div>
 
                     <!-- V2 -->
-                    <div>
+                    <div id="rating_ver2" style="display:none;">
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
@@ -93,7 +92,7 @@
                     </div>
 
                     <!-- V3 -->
-                    <div>
+                    <div id="rating_ver3" style="display:none;">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="ratings">
                                 <i class="fa fa-star rating-color"></i>
@@ -105,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <div  style="height: 50px;">&nbsp;</div>
+                <div style="height: 50px;">&nbsp;</div>
                 <div>
                     <div>
                         <h4>품목정보</h4>
@@ -142,6 +141,111 @@
 
 
 </main><!-- /.container -->
+
+
+
+
 <footer th:replace="fragments/common :: footer"></footer>
+
+<!-- custom javascript -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        let obj = new Array();
+
+        obj = {
+            init: function (){
+
+
+            },
+            getDataDetail: function(){
+
+                let url = `/detail/9788983711892`;
+                const params = {
+                    ISBN13: 9788983711892
+                };
+
+                axios.get(url, params)
+                    .then((res => {
+                        //console.log(res);
+                        const {data} = res.data;
+                        //console.log(data.introduce);
+                        $("#introduce").html(data.introduce);
+                    }))
+                    .catch(function (error) {
+                        alert('서버 작업중 오류가 발생했습니다. 현상을 개발자에게 전달하세요.')
+                        if (error.response) {
+                            // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        }
+                        else if (error.request) {
+                            // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                            // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                            // Node.js의 http.ClientRequest 인스턴스입니다.
+                            console.log(error.request);
+                        }
+                        else {
+                            // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                            console.log('Error', error.message);
+                        }
+                        console.log(error.config);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
+            },
+            getDataReview1: function(){
+
+                let url = `/review/9788983711892`;
+                const params = {
+                    ver: 1
+                };
+
+                axios.get(url, params)
+                    .then((res => {
+                        //console.log(res);
+                        const {data} = res.data;
+                        console.log(data);
+                    }))
+                    .catch(function (error) {
+                        alert('서버 작업중 오류가 발생했습니다. 현상을 개발자에게 전달하세요.')
+                        if (error.response) {
+                            // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+                            console.log(error.response.data);
+                            console.log(error.response.status);
+                            console.log(error.response.headers);
+                        }
+                        else if (error.request) {
+                            // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                            // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                            // Node.js의 http.ClientRequest 인스턴스입니다.
+                            console.log(error.request);
+                        }
+                        else {
+                            // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                            console.log('Error', error.message);
+                        }
+                        console.log(error.config);
+                    })
+                    .finally(function () {
+                        // always executed
+                    });
+            }
+        };
+
+
+        $(function() {
+
+            obj.init();
+
+            obj.getDataDetail();
+            obj.getDataReview1();
+
+        });
+
+
+    </script>
+</th:block>
 </body>
 </html>

@@ -9,4 +9,5 @@ public class BookInfo {
     String name;
     String ISBN13;
     Float rating;
+    String introduce;
 }

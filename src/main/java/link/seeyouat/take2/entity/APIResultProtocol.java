@@ -6,5 +6,6 @@ import lombok.Data;
 @Data
 public class APIResultProtocol {
     int code;
-    Object returnValue;
+    int ver;
+    Object data;
 }

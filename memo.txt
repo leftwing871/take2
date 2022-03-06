@@ -1,0 +1,19 @@
+docker build -t book:1.0.0 .
+
+docker images
+docker run -d -p 8081:8080 book:1.0.0
+
+docker tag book:1.0.0 leftwing871/book:1.0.0
+docker push leftwing871/book:1.0.0
+
+
+---
+docker build -t review:1.0.0 .
+docker tag review:1.0.0 leftwing871/review:1.0.0
+docker push leftwing871/review:1.0.0
+
+
+---
+docker build -t rating:1.0.0 .
+docker tag review:1.0.0 leftwing871/rating:1.0.0
+docker push leftwing871/rating:1.0.0
