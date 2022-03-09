@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import link.seeyouat.take2.entity.APIResultProtocol;
 import link.seeyouat.take2.entity.BookInfo;
+import link.seeyouat.take2.util.EnvironmentVariableHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -30,7 +31,12 @@ public class BookReviewApiController {
         _log.info(ISBN13);
         BookInfo bookInfo = new BookInfo("코스모스", "9788983711892", 4.5f, "");
 
-        String targetUrl = "http://127.0.0.1:8080/rating/9788983711892";
+        String CLUSTER_IP_rating = EnvironmentVariableHelper.getInstance().getProperty("CLUSTER_IP_rating");
+        if(CLUSTER_IP_rating == null)
+            CLUSTER_IP_rating = "127.0.0.1";
+
+        _log.info("CLUSTER_IP_rating: " + CLUSTER_IP_rating);
+        String targetUrl = "http://" + CLUSTER_IP_rating + ":8080/rating/9788983711892";
         String USER_AGENT = "Mozilla/5.0";
 
         URL url = new URL(targetUrl);
