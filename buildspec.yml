@@ -12,7 +12,6 @@ phases:
       - java -version
       - pwd
       - sudo yum install docker -y
-      - sudo service docker start
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
