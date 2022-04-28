@@ -24,7 +24,7 @@ import javax.net.ssl.HttpsURLConnection;
 @RestController
 public class BookReviewApiController {
 
-    private static final Logger _log = LoggerFactory.getLogger(HelloController.class);
+    private static final Logger _log = LoggerFactory.getLogger(BookReviewApiController.class);
 
     @GetMapping(value = "/review/{ISBN13}", produces = MediaType.APPLICATION_JSON_VALUE)
     public APIResultProtocol review(@PathVariable("ISBN13") String ISBN13) throws IOException {
@@ -68,7 +68,7 @@ public class BookReviewApiController {
 
         APIResultProtocol apiResultProtocol = new APIResultProtocol();
         apiResultProtocol.setCode(0);
-        apiResultProtocol.setVer(1);
+        apiResultProtocol.setVer(2);
         apiResultProtocol.setData(bookInfo);
         return apiResultProtocol;
     }

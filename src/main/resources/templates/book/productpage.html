@@ -77,9 +77,14 @@
                     <h4>평점</h4>
                 </div>
                 <div>
-                    <!-- V1 -->
-                    <div id="rating_ver1">
+                    <!-- V0 -->
+                    <div id="rating_ver0">
                         <span>준비중</span>
+                    </div>
+
+                    <!-- V1 -->
+                    <div id="rating_ver1" style="display:none;">
+                        <span>평점: 4</span>
                     </div>
 
                     <!-- V2 -->
@@ -150,6 +155,11 @@
 <!-- custom javascript -->
 <th:block layout:fragment="script">
     <script th:inline="javascript">
+
+        /*<![CDATA[*/
+        let reviewVersion = "[[${reviewVersion}]]";
+        /*]]>*/
+
         let obj = new Array();
 
         obj = {
@@ -195,43 +205,80 @@
                         // always executed
                     });
             },
-            getDataReview1: function(){
+            settingReview: function (){
 
-                let url = `/review/9788983711892`;
-                const params = {
-                    ver: 1
-                };
+                $("#rating_ver0").hide();
 
-                axios.get(url, params)
-                    .then((res => {
-                        //console.log(res);
-                        const {data} = res.data;
-                        console.log(data);
-                    }))
-                    .catch(function (error) {
-                        alert('서버 작업중 오류가 발생했습니다. 현상을 개발자에게 전달하세요.')
-                        if (error.response) {
-                            // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
-                            console.log(error.response.data);
-                            console.log(error.response.status);
-                            console.log(error.response.headers);
-                        }
-                        else if (error.request) {
-                            // 요청이 이루어 졌으나 응답을 받지 못했습니다.
-                            // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
-                            // Node.js의 http.ClientRequest 인스턴스입니다.
-                            console.log(error.request);
-                        }
-                        else {
-                            // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
-                            console.log('Error', error.message);
-                        }
-                        console.log(error.config);
-                    })
-                    .finally(function () {
-                        // always executed
-                    });
+                if(reviewVersion == 1)
+                    $("#rating_ver1").show();
+
+                if(reviewVersion == 2)
+                    $("#rating_ver2").show();
+
+                if(reviewVersion == 3)
+                    $("#rating_ver3").show();
             }
+            // getDataReview1: function(){
+            //
+            //     let url = `/review/9788983711892`;
+            //     const params = {
+            //         ver: 1
+            //     };
+            //
+            //     axios.get(url, params)
+            //         .then((res => {
+            //             // {
+            //             //     "code": 0,
+            //             //     "ver": 1,
+            //             //         "data": {
+            //             //         "name": "코스모스",
+            //             //             "rating": 4.5,
+            //             //             "introduce": "",
+            //             //             "isbn13": "9788983711892"
+            //             //     }
+            //             // }
+            //             //console.log(res.data.ver);
+            //             //console.log(res.data.code);
+            //             const {data} = res.data;
+            //             console.log(data);
+            //
+            //             $("#rating_ver0").hide();
+            //
+            //             console.log((res.data.ver === 1));
+            //             if(res.data.ver === 1)
+            //                 $("#rating_ver1").show();
+            //
+            //             if(res.data.ver === 2)
+            //                 $("#rating_ver2").show();
+            //
+            //             if(res.data.ver === 3)
+            //                 $("#rating_ver3").show();
+            //
+            //         }))
+            //         .catch(function (error) {
+            //             alert('서버 작업중 오류가 발생했습니다. 현상을 개발자에게 전달하세요.')
+            //             if (error.response) {
+            //                 // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+            //                 console.log(error.response.data);
+            //                 console.log(error.response.status);
+            //                 console.log(error.response.headers);
+            //             }
+            //             else if (error.request) {
+            //                 // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+            //                 // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+            //                 // Node.js의 http.ClientRequest 인스턴스입니다.
+            //                 console.log(error.request);
+            //             }
+            //             else {
+            //                 // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+            //                 console.log('Error', error.message);
+            //             }
+            //             console.log(error.config);
+            //         })
+            //         .finally(function () {
+            //             // always executed
+            //         });
+            // }
         };
 
 
@@ -240,7 +287,7 @@
             obj.init();
 
             obj.getDataDetail();
-            obj.getDataReview1();
+            obj.settingReview();
 
         });
 
