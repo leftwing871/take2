@@ -1,0 +1,87 @@
+pipeline {
+  agent any
+
+  parameters {
+    booleanParam(name : 'BUILD_DOCKER_IMAGE', defaultValue : true, description : 'BUILD_DOCKER_IMAGE')
+    booleanParam(name : 'RUN_TEST', defaultValue : true, description : 'RUN_TEST')
+    booleanParam(name : 'PUSH_DOCKER_IMAGE', defaultValue : true, description : 'PUSH_DOCKER_IMAGE')
+
+
+    // CI
+    string(name : 'AWS_ACCOUNT_ID', defaultValue : 'YOUR_AWS_ACCOUNT_ID', description : 'AWS_ACCOUNT_ID')
+    string(name : 'DOCKER_IMAGE_NAME', defaultValue : 'take2', description : 'DOCKER_IMAGE_NAME')
+    string(name : 'DOCKER_TAG', defaultValue : '1.0.0', description : 'DOCKER_TAG')
+
+  }
+
+  environment {
+    // REGION = "ap-northeast-2"
+    // ECR_REPOSITORY = "${params.AWS_ACCOUNT_ID}.dkr.ecr.ap-northeast-2.amazonaws.com"
+    // ECR_DOCKER_IMAGE = "${ECR_REPOSITORY}/${params.DOCKER_IMAGE_NAME}"
+    // ECR_DOCKER_TAG = "${params.DOCKER_TAG}"
+    // ECR_DOCKER_IMAG_NAME = "${params.DOCKER_IMAGE_NAME}"
+
+    HARBOR_ID = "jenkins_ehlee"
+    HARBOR_PW = "Jenkins1!"
+    HARBOR_REPO = "take2"
+    HARBOR_SERVER = "127.0.0.1"
+    HARBOR_PROJECT = "take2"
+    HARBOR_DOCKER_IMAGE = "${HARBOR_SERVER}/${HARBOR_PROJECT}/${HARBOR_PROJECT}:${BUILD_ID}"
+
+  }
+
+  stages {
+
+
+    stage('============ Build Docker Image ============') {
+        when { expression { return params.BUILD_DOCKER_IMAGE } }
+        // agent { label 'build' }
+        steps {
+            //dir("${env.WORKSPACE}") {
+
+            script{
+                withDockerRegistry(credentialsId: 'jenkins_ehlee', url: 'http://${HARBOR_SERVER}') {
+                    sh """
+                        echo "[Docker] Image Build Job"
+                        ls -al
+                        docker build -t ${HARBOR_DOCKER_IMAGE} .
+                    """
+                }
+            }
+
+                // sh 'whoami'
+                // sh 'aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR_REPOSITORY}'
+                // sh 'docker build -t ${ECR_DOCKER_IMAG_NAME} .'
+                // sh 'docker tag ${ECR_DOCKER_IMAG_NAME}:latest ${ECR_DOCKER_IMAGE}:${BUILD_ID} '
+            //}
+        }
+
+        post {
+            always {
+                echo "Docker build success!"
+            }
+        }
+        // steps {
+        //         echo '============ Build Docker Image ============'
+        //     }
+    }
+
+    stage('============ Push Docker Image ============') {
+        when { expression { return params.PUSH_DOCKER_IMAGE } }
+        // agent { label 'build' }
+        steps {
+            echo "Push Docker Image to Harbor"
+            //aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR_REPOSITORY}
+            sh"""
+
+                echo "[Docker] Push Image"
+
+                docker push "${HARBOR_DOCKER_IMAGE}"
+            """
+        }
+    }
+
+  }
+
+
+}
