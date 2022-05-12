@@ -23,7 +23,7 @@ phases:
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       # - REPOSITORY_URI=<ACCOUNT-ID>.dkr.ecr.<REGION>.amazonaws.com/<BASE-REPO-NAME>
-      - REPOSITORY_URI=961770019511.dkr.ecr.ap-northeast-2.amazonaws.com/take2
+      - REPOSITORY_URI=416225317325.dkr.ecr.ap-northeast-2.amazonaws.com/take2
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
   build:
